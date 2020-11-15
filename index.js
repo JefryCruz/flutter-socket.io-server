@@ -9,7 +9,7 @@ const server = require('http').createServer(app);
 module.exports.io = require('socket.io')(server);
 require('./sockets/socket');
 
-//path publico, aca se pondra la dirección del dominio o donde se desplezque el socket
+//path publico, aca se pondra la dirección del dominio o donde se desplegue el socket
 const publicPath = path.resolve(__dirname, 'public');
 
 app.use(express.static(publicPath));
