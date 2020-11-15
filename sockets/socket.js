@@ -8,7 +8,6 @@ bands.addBand( new Band('El Rey León'));
 bands.addBand( new Band('El Rey Arturo'));
 bands.addBand( new Band('Moana'));
 bands.addBand( new Band('Los Pitufos'));
-bands.addBand( new Band('Iron Man'));
 
 console.log(bands);
 
@@ -23,10 +22,10 @@ io.on('connection', client => {
         console.log('Cliente desconectado');
      });
 
-    client.on('Mensaje', (payload) => {
-        console.log('Mensaje', payload);
-        io.emit('Mensaje', { admin: 'Nuevo msj' });
-    });
+    // client.on('Mensaje', (payload) => {
+    //     console.log('Mensaje', payload);
+    //     io.emit('Mensaje', { admin: 'Nuevo msj' });
+    // });
 
     // client.on('emitir-mensaje', (payload) => {
     //     client.broadcast.emit('nuevo-mensaje', payload);
@@ -41,10 +40,11 @@ io.on('connection', client => {
     });
 
     client.on('add-band', (payload) => {
-        const newBand = new Band(payload.name);
-        bands.addBand(newBand.name);
-        io.emit('acive-bands', bands.getBands());
+        const newBand = new Band( payload.name );
+        bands.addBand( newBand );
+        io.emit('active-bands', bands.getBands() );
     });
+
 
     client.on('delete-band', (payload) => {
         // const newBand = new Band(payload.name);
